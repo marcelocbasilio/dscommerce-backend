@@ -1,8 +1,10 @@
 package br.com.marcelobasilio.dscommerce.entities;
 
 import jakarta.persistence.*;
+import org.aspectj.weaver.ast.Or;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -78,5 +80,13 @@ public class Product {
 
     public Set<Category> getCategories() {
         return categories;
+    }
+
+    public Set<OrderItem> getItems() {
+        return items;
+    }
+
+    public List<Order> getOrder() {
+        return items.stream().map(OrderItem::getOrder).toList();
     }
 }
